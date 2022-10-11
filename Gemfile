@@ -60,7 +60,7 @@ gem "devise", github: "heartcombo/devise", ref: "f8d1ea90bc3"
 gem "letter_opener", group: :development
 gem "forecast_io"
 gem 'figaro'
-gem "sass-rails", "~> 6.0"
+# gem "sass-rails", "~> 6.0"
 gem 'kaminari'
 
 group :development, :test do
