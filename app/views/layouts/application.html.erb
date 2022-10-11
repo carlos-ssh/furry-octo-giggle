@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gaby</title>
+    <title>GRE</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
+    <header class="bg-gray-800">
+      <%= render partial: 'layouts/partials/navbar' %>
+    </header>
+    <% if notice %>
+      <p class="text-white text-center bg-green-500 py-3 px-5"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="text-white text-center bg-red-500 py-3 px-5"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

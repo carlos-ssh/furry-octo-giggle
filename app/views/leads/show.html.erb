@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
+<div class="">
+  <%= render @lead %>
+</div>
 
-<%= render @lead %>
-
-<div>
-  <%= link_to "Edit this lead", edit_lead_path(@lead) %> |
-  <%= link_to "Back to leads", leads_path %>
-
-  <%= button_to "Destroy this lead", @lead, method: :delete %>
+<div class="btn-container">
+  <%= link_to "Regresar", leads_path, class:'btn-return' %>
+  <%= link_to "Editar Lead", edit_lead_path(@lead), class:'btn-edit-lead' %>
+  <%= button_to "Eliminar", @lead, method: :delete, class:'btn-delete-lead', data: {confirm: "Estas seguro?"} %>
 </div>

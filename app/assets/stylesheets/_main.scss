@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  font-size: 16px;
+  width: 100vw;
+  height: 100vh;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.paggy {
+  max-width: 320px;
+}
+
+// pagination
+.pag-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  width: 100%;
+  max-width: 320px;
+  align-self: center;
+}
+
+.btn-first,
+.btn-last,
+.btn-next,
+.prev-page,
+.current-page {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.nums-pag {
+  align-items: center;
+  padding: 5px;
+  margin: 0;
+}

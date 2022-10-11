@@ -1,27 +1,38 @@
-<div id="<%= dom_id lead %>">
-  <p>
-    <strong>First name:</strong>
-    <%= lead.first_name %>
-  </p>
+<div id="<%= dom_id lead %>" class="main-card-container">
+  <div class="wrapper-img">
+    <%# image_tag lead.image_url, class: "card-img" %>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= lead.last_name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= lead.email %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= lead.phone %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= lead.note %>
-  </p>
-
+    <%= link_to(image_tag("https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png"), lead_path) %>
+  </div>
+  <div class="wrapper-leads">
+    <div>
+      <div>
+        <strong>Nombre:</strong>
+        <%= lead.first_name %> <%= lead.last_name %>
+      </div>
+      <div>
+        <strong>Correo:</strong>
+        <%= lead.email %>
+        <strong>Tel</strong>
+        <%= lead.phone %>
+      </div>
+      <div>
+        <strong>Notas:</strong>
+        <%= lead.note %>
+      </div>
+      
+      <div class="icons-container">
+        <div>
+          <%= mail_to lead.email do %>
+            <%= image_tag("https://www.svgrepo.com/show/296967/email-mail.svg", class:"lead-icons") %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to "tel:#{lead.phone}" do %>
+            <%= image_tag("https://www.svgrepo.com/show/64208/phone.svg", class:"lead-icons1") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

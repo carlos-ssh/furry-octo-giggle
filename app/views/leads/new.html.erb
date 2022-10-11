@@ -1,13 +1,9 @@
-<div class="container">
-  <div class="wrapper">
-    <h1>Nuevo Lead</h1>
-
+<div class="main-container-new">
+  <% if user_signed_in? %>
+    <h1 class="title-new">Nuevo Lead</h1>
     <%= render "form", lead: @lead %>
-
-    <br>
-
-    <div>
-      <%= link_to "Back to leads", leads_path %>
-    </div>
-  </div>
+    <%= link_to "Volver", leads_path, class:"leadd-btn-new" %>
+  <% else %>
+    <%= render "form", lead: @lead %>
+  <% end %>
 </div>

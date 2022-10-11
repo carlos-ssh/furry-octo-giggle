@@ -1,0 +1,11 @@
+<div class="main-dash">
+  <div class="top-container-dash">
+    <h4 class="text-dash">Dashboard</h4>
+    <%= I18n.localize(Time.now, format: :long) %>
+  </div>
+
+  <div class="container p-5">
+    <%= link_to 'Leads', leads_path, class:"leads-dash-button" %>
+    <%= link_to 'Subscriptores', subscribers_path, class:"leads-dash-button" %>
+  </div>
+</div>

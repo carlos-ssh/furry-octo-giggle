@@ -1,10 +1,10 @@
-<h1>Editing lead</h1>
+<h1 class="edit-title">Editar</h1>
 
 <%= render "form", lead: @lead %>
 
 <br>
 
-<div>
-  <%= link_to "Show this lead", @lead %> |
-  <%= link_to "Back to leads", leads_path %>
+<div class="container-links-lead">
+  <%= link_to "Volver", leads_path, class:"return-btn-new" %>
+  <%= link_to "Ver Lead", @lead, class:"ver-btn-new" %>
 </div>
