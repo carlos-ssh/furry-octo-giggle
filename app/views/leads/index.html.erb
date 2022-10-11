@@ -1,14 +1,82 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Leads</h1>
-
-<div id="leads">
-  <% @leads.each do |lead| %>
-    <%= render lead %>
-    <p>
-      <%= link_to "Show this lead", lead %>
-    </p>
-  <% end %>
+<div class="lead-main-container">
+  <div class="title-container">
+    <h1 class="lead-title">Lista de Leads</h1>
+  </div>
+  <div class="container-buttons">
+    <div class="">
+      <%= button_to "Volver", pages_dashboard_path, :class => "back-btn", :method => :get %>
+    </div>
+    <div class="">
+      <%= button_to "Crear Lead", new_lead_path, :class => "create-btn", :method => :get %>
+    </div>
+    <div class="">
+      <%= form_tag import_leads_path, multipart: true do %>
+          <%= file_field_tag :file, :class => "import-btn" %>
+          <% if file_field_tag(:file).present? %>
+            <%= submit_tag "Importar", :class => "import-btn"%>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+<p>
+</p>
+  <div class="container px-3">
+    <div class="flex flex-col" id="leads">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full">
+              <thead class="bg-white border-b">
+                <tr>
+                  <th scope="col" class="lg:flex text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    Acciones
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    Nombre
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    Apellido
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    Telefono
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    Email
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                    #
+                  </th>
+                </tr>
+              </thead>
+              <% @leads.each do |lead| %>
+                <tbody class="">
+                  <tr class="bg-gray-100 border-b">
+                    <td class=" text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%= link_to "Ver Lead", lead, class:'underline text-blue-500' %>
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%= lead.first_name %>
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%= lead.last_name %>
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%= lead.phone %>
+                    </td>
+                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <%= lead.email %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <%= Lead.where(:id => lead.id).count %>
+                    </td>
+                  </tr>
+                </tbody>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+      <%= paginate @leads, class: "paggy" %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New lead", new_lead_path %>

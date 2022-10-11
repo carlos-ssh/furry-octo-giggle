@@ -1,18 +1,34 @@
 class LeadsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :set_lead, only: %i[ show edit update destroy ]
 
   # GET /leads or /leads.json
   def index
-    @leads = Lead.all
+    @leads = Lead.all.page(params[:page]).per(10)
   end
 
   # GET /leads/1 or /leads/1.json
   def show
   end
 
+  def import
+    Lead.import(params[:file])
+    redirect_to leads_url, notice: "Leads importados."
+  end
+
   # GET /leads/new
   def new
     @lead = Lead.new
+
+    respond_to do |format|
+      if @lead.save
+        format.html { render :new, notice: "Lead was successfully created." }
+        format.json { render :show, status: :created, location: @lead }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @lead.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /leads/1/edit
