@@ -9,7 +9,7 @@
 
 # Create first user
 User.create!(
-  email: "carlos.anezeh@gmail.com",
+  email: "paularodest3@icloud.com",
   password: "password",
   password_confirmation: "password",
 )
