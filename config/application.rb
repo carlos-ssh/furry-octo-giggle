@@ -31,9 +31,9 @@ module FurryOctoGiggle
     # config.eager_load_paths << Rails.root.join("extras")
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'https://rentaspostal.vercel.app/'
         resource(
-          '*',
+          'https://rentaspostal.vercel.app/',
           headers: :any,
           methods: [:get, :patch, :put, :delete, :post, :options, :head]
           )
