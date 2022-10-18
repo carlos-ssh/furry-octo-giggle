@@ -1,116 +1,39 @@
-<form data-controller="reset-form" data-action="turbo:submit-end->reset-form#reset">
-  <%= form_with(model: lead) do |form| %>
-    <div class="rounded-lg p-4 mx-4 shadow-lg bg-white">
-      <form>
-        <div class="form-group mb-6">
-          <%= form.label 'Nombre', style: "display: block" %>
-          <%= form.text_field :first_name, placeholder: "Juan", class:"form-control
-            block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        </div>
-        <div class="form-group mb-6">
-          <%= form.label 'Apellidos', style: "display: block" %>
-          <%= form.text_field :last_name, placeholder: "Camaney", class:"form-control
-            block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        </div>
-        <div class="form-group mb-6">
-          <%= form.label 'Email', style: "display: block" %>
-          <%= form.text_field :email, placeholder: "juan@gmail.com", class:"form-control block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        </div>
-        <div class="form-group mb-6">
-          <%= form.label 'Teléfono', style: "display: block" %>
-          <%= form.text_field :phone, placeholder: "+52 (442) 840 3087", class:"form-control block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        </div>
-        <div class="form-group mb-6">
-          <%= form.label 'Notas', style: "display: block" %>
-          <%= form.text_area :note, placeholder: "Mensaje...", size: "10x5", class:"form-control block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
-        </div>
+<%= form_with(model: lead, class: "contents") do |form| %>
+  <% if lead.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lead.errors.count, "error") %> prohibited this lead from being saved:</h2>
 
-        <div class="form-group mb-6">
-          <%= form.submit 'ENVIAR', class:"
-            w-full
-            px-6
-            py-2.5
-            bg-blue-600
-            text-white
-            font-medium
-            text-xs
-            leading-tight
-            uppercase
-            rounded
-            shadow-md
-            hover:bg-blue-700 hover:shadow-lg
-            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-            active:bg-blue-800 active:shadow-lg
-            transition
-            duration-150
-            ease-in-out" %>
-        </div>
-      </form>
+      <ul>
+        <% lead.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-</form>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

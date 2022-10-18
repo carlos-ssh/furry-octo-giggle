@@ -1,10 +1,15 @@
 class LeadsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :set_lead, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token, if: :json_request?
+  protect_from_forgery with: :null_session, only: [:create]
 
   # GET /leads or /leads.json
   def index
     @leads = Lead.all.page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.json { render json: @subscribers }
+    end
   end
 
   # GET /leads/1 or /leads/1.json
